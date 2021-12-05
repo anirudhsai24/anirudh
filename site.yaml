@@ -35,7 +35,7 @@
     - start php7.4-fpm
       - name: Setting up nginx.conf 
     template:
-       src: "./Nginx.conf"
+       src: "./nginx.conf"
        dest: "/etc/nginx/nginx.conf"
     notify:
     - restart php7.4-fpm
@@ -149,7 +149,7 @@
       upgrade: dist
       force_apt_get: yes
     notify:
-      - run Haproxy      
+      - run haproxy      
 
   - name: collect information from servers
     setup:
@@ -161,24 +161,24 @@
        path: "/etc/haproxy/haproxy.cfg"
        state: absent
     notify:
-    - restart Haproxy 
+    - restart haproxy 
 
   - name: Deploy HAProxy configuration
     template:
       src: ./haproxy.cfg.j2
       dest: "/etc/haproxy/haproxy.cfg"
     notify:
-      - restart Haproxy
-      - run Haproxy
+      - restart haproxy
+      - run haproxy
 
   handlers:
 
-  - name: run Haproxy
+  - name: run haproxy
     service:
       name: haproxy
       state: started
 
-  - name: restart Haproxy
+  - name: restart haproxy
     service:
       name: haproxy
       state: restarted
