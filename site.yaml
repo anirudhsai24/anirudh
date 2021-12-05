@@ -6,7 +6,7 @@
 
   tasks:
  
-  - name: Installing nginx web server on devA, B & C
+  - name: Installing nginx web server 
 
     apt:
 
@@ -20,7 +20,7 @@
 
  
 
-  - name: Installing php7.4-fpm on devA, B & C
+  - name: Installing php7.4-fpm 
 
     apt:
 
